@@ -5,11 +5,11 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - ruby
   - python
-  - javascript
+  - javascript(jquery)
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/talent-webmobiledeveloper/slate'>Documentation Powered by Vault</a>
 
 includes:
   - errors
@@ -19,221 +19,171 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Vault Payment API! You can use our API to access Vault API endpoints.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Checkout 
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## Checkout with Api
 
-# Authentication
+> To checkout, use this code:
 
-> To authorize, use this code:
+```javascript(jquery)
+  $.ajax({
+    url:"https://api.thevaultapp.com/checkout",
+    data:{
+      token:{api_key},
+      phone:{customer_phone_number},
+      amount:{amount to checkout}
+    },
+    type:"POST"
+  })
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
 ```
 
-```python
-import kittn
+> Make sure to replace `api_key` with your API key.
 
-api = kittn.authorize('meowmeowmeow')
-```
+Vault uses API keys to allow access to the API. You can register a new Vault API key at our (https://www.thevaultapp.com/business/api).
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+### HTTP Request
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`POST https://api.thevaultapp.com/checkout`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>api_key</code> with your personal API key.
+</aside>
+### Post Parameters
+
+Parameter | Default | Description | Required
+--------- | ------- | ----------- | ----------- 
+token | empty | Registered the api key in the business/api.  | true
+phone | empty | The customer phone number where the payment request is sent. | true
+amount | empty | The payment amount to checkout | true
+
+
+> The above command returns JSON structured like this:
+
+```json
+  {
+    "status": "ok",
+    "result": {
+      "requestid":"829191sfwiwiw2923sf",
+      "amount":10.44,
+      "phone":"+12402211454",
+      "employeeemail":"andrew.lidev@yandex.com",
+      "status":"pending"
+    },
+    "code": 1,
+  }
+```
+
+## Checkout by posting the vault server
+
+> To checkout, use this code:
+
+```javascript(jquery)
+  $.ajax({
+    url:"https://www.thevaultapp.com/checkout/shopping",
+    data:{
+      _token:{api_key},
+      phone:{customer_phone_number},
+      amount:{amount to checkout}
+    },
+    type:"POST"
+  })
+
+```
+
+> Make sure to replace `api_key` with your API key.
+
+Vault uses API keys to allow access to the API. You can register a new Vault API key at our (https://www.thevaultapp.com/business/api).
+
+<aside class="notice">
+You must replace <code>api_key</code> with your personal API key.
+</aside>
+### Post Parameters
+
+Parameter | Default | Description | Required
+--------- | ------- | ----------- | ----------- 
+token | empty | Registered the api key in the business/api.  | true
+phone | empty | The customer phone number where the payment request is sent. | false
+amount | empty | The payment amount to checkout | true
+
+
+> The above command returns JSON structured like this:
+
+```json
+  {
+    "status": "ok",
+    "result": {
+      "requestid":"829191sfwiwiw2923sf",
+      "amount":10.44,
+      "phone":"+12402211454",
+      "employeeemail":"andrew.lidev@yandex.com",
+      "status":"pending"
+    },
+    "code": 1,
+  }
+```
+
+<aside class="notice">
+  If the <code>phone</code> is empty, it will redirect to the vault server form to input the phone number.
+  After approving or denying the request, the last status page will say the request status.
 </aside>
 
-# Kittens
+# Query
 
-## Get All Kittens
+## Get Status of the payment request
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+```javascript(jquery)
+  $.ajax({
+    url:"https://api.thevaultapp.com/checkout/query/{request_id}",
+    data:{
+      token:{api_key}
+    },
+    type:"POST"
+  }).done(function(response, status){
+    //Process api calling success
+  }).fail(function(response, status){
+    //Process api calling fail
+  })
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
   {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "status":"ok",
+    "result":{
+      "id": "9ss023swowflwsow293023",
+      "status":"Approved"
+    },
+    "code":1
   }
-]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves status of the request.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST https://api.thevaultapp.com/checkout/query/{request_id}`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Default | Description | Reuqired 
+--------- | ------- | ----------- | ------------
+request_id | empty | The request id gotten from the checkout api. | true
+
+### Post Parameters
+
+Parameter | Default | Description | Reuqired 
+--------- | ------- | ----------- | ------------
+token | empty | Registered the api key in the business/api.  | true
+
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — if token is unset, the api would not work properly.
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 
