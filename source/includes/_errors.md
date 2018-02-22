@@ -9,8 +9,8 @@ The Vault API uses the following status codes:
 
 Status Code | Meaning
 ---------- | -------
-0 | Request Faild -- The api calling is failed.
-1 | Api Sucess -- The api calling is success.
+0 | Request Failed -- The API call failed.
+1 | Api Success -- The API call was successful.
 
 
 <aside class="warning">

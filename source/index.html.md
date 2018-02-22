@@ -2,10 +2,10 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - javascript
   - shell
   - ruby
-  - python
-  - javascript(jquery)
+  - python  
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,15 +19,15 @@ search: true
 
 # Introduction
 
-Welcome to the Vault Payment API! You can use our API to access Vault API endpoints.
+Welcome to The Vault App Payment API. Through the API endpoints, Clients have the ability to initiate $ Requests and check $ Request statuses.
 
 # Checkout 
 
-## Checkout with Api
+## Checkout via API
 
 > To checkout, use this code:
 
-```javascript(jquery)
+```javascript
   $.ajax({
     url:"https://api.thevaultapp.com/checkout",
     data:{
@@ -42,7 +42,7 @@ Welcome to the Vault Payment API! You can use our API to access Vault API endpoi
 
 > Make sure to replace `api_key` with your API key.
 
-Vault uses API keys to allow access to the API. You can register a new Vault API key at our (https://www.thevaultapp.com/business/api).
+TVA uses API keys to allow access to the API. You can register a new Vault API key at [https://www.thevaultapp.com/business/api](https://www.thevaultapp.com/business/api).
 
 ### HTTP Request
 
@@ -76,11 +76,11 @@ amount | empty | The payment amount to checkout | true
   }
 ```
 
-## Checkout by posting the vault server
+## Checkout by posting to The Vault App web server
 
 > To checkout, use this code:
 
-```javascript(jquery)
+```javascript
   $.ajax({
     url:"https://www.thevaultapp.com/checkout/shopping",
     data:{
@@ -95,7 +95,7 @@ amount | empty | The payment amount to checkout | true
 
 > Make sure to replace `api_key` with your API key.
 
-Vault uses API keys to allow access to the API. You can register a new Vault API key at our (https://www.thevaultapp.com/business/api).
+TVA uses API keys to allow access to the API. You can register a new Vault API key at [https://www.thevaultapp.com/business/api](https://www.thevaultapp.com/business/api).
 
 <aside class="notice">
 You must replace <code>api_key</code> with your personal API key.
@@ -126,8 +126,7 @@ amount | empty | The payment amount to checkout | true
 ```
 
 <aside class="notice">
-  If the <code>phone</code> is empty, it will redirect to the vault server form to input the phone number.
-  After approving or denying the request, the last status page will say the request status.
+   If the <code>phone</code> is empty, it will redirect to a TVA web form to input a phone number. After approving or denying the request, the last status page will say the request status.
 </aside>
 
 # Query
@@ -135,7 +134,7 @@ amount | empty | The payment amount to checkout | true
 ## Get Status of the payment request
 
 
-```javascript(jquery)
+```javascript
   $.ajax({
     url:"https://api.thevaultapp.com/checkout/query/{request_id}",
     data:{
