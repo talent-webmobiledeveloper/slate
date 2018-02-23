@@ -184,5 +184,23 @@ token | empty | Registered the api key in the business/api.  | true
 Remember — if token is unset, the api would not work properly.
 </aside>
 
+# API Terms of Use
 
+## Attributes
 
+Clients must use a TVA image somewhere within the page using TVA api.
+
+### Available sizes:
+
+ |  |  |
+--------- | ------- | ----------- | ------------
+Checkout Button | <img src="images/tva_buttons/CheckoutButton.png" class="checkoutbuttonimg" alt="Logo"> | <ul><li><a href="images/tva_buttons/CheckoutButton.png">Normal</a>  </li><li><a href="images/tva_buttons/CheckoutButton_S.png">Small</a>  </li><li><a href="images/tva_buttons/CheckoutButton 2.png">Normal White</a>  </li><li><a href="images/tva_buttons/CheckoutButton_S 2.png">Small White</a>  </li></ul>
+Pay Button | <img src="images/tva_buttons/PayButton.png" class="checkoutbuttonimg" alt="Logo"> | <ul><li><a href="images/tva_buttons/PayButton.png">Normal</a>  </li><li><a href="images/tva_buttons/PayButton_S.png">Small</a>  </li><li><a href="images/tva_buttons/PayButton 2.png">Normal White</a>  </li><li><a href="images/tva_buttons/PayButton_S 2.png">Small White</a>  </li></ul>
+
+Failure to implement the proper attribution may result in account suspension.
+
+## Rate Limits
+
+The TVA API by default will not impose rate limiting on accounts. However, API usage is tracked and any abuse of the system will result in an account suspension and an inquiry into the high activity.
+
+If your company is planning on high activity, please contact admin@vaultpaymentsystem.com with a request for an unrestricted rate limit.
