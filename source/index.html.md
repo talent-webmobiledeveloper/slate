@@ -9,7 +9,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/talent-webmobiledeveloper/slate'>Documentation Powered by Vault</a>
+  - <a href='https://www.thevaultapp.com'>Documentation Powered by Vault</a>
 
 includes:
   - errors
@@ -69,7 +69,7 @@ amount | empty | The payment amount to checkout | true
       "requestid":"829191sfwiwiw2923sf",
       "amount":10.44,
       "phone":"+12402211454",
-      "employeeemail":"andrew.lidev@yandex.com",
+      "employeeemail":"no-reply@thevaultapp.com",
       "status":"pending"
     },
     "code": 1,
@@ -118,7 +118,7 @@ amount | empty | The payment amount to checkout | true
       "requestid":"829191sfwiwiw2923sf",
       "amount":10.44,
       "phone":"+12402211454",
-      "employeeemail":"andrew.lidev@yandex.com",
+      "employeeemail":"no-reply@thevaultapp.com",
       "status":"pending"
     },
     "code": 1,
